@@ -1,0 +1,20 @@
+{
+  "name": "pgp-works",
+  "version": "1.0.0",
+  "description": "PGP desktop app",
+  "main": "start-app.js",
+  "repository": "https://www.github.com/Eseb/pgp-works",
+  "author": "Seb Bacanu <seb@bacanu.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "PGP_WORKS_DEBUG=true electron ."
+  },
+  "devDependencies": {
+    "electron-prebuilt-compile": "^1.6.11",
+    "eslint": "^3.19.0"
+  },
+  "dependencies": {
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4"
+  }
+}
