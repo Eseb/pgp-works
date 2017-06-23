@@ -7,14 +7,18 @@
   "author": "Seb Bacanu <seb@bacanu.com>",
   "license": "MIT",
   "scripts": {
-    "start": "PGP_WORKS_DEBUG=true electron ."
+    "rebuild": "electron-rebuild",
+    "start": "DEBUG=-electron-compile:* PGP_WORKS_DEBUG=true electron ."
   },
   "devDependencies": {
     "electron-prebuilt-compile": "^1.6.11",
+    "electron-rebuild": "^1.5.11",
     "eslint": "^3.19.0"
   },
   "dependencies": {
+    "openpgp": "^2.5.4",
     "react": "^15.5.4",
-    "react-dom": "^15.5.4"
+    "react-dom": "^15.5.4",
+    "sqlite3": "^3.1.8"
   }
 }
