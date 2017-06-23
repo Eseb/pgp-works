@@ -1,3 +1,5 @@
+// This import comes through `electron-prebuilt-compile`.
+// eslint-disable-next-line import/no-extraneous-dependencies
 import {
   app,
   BrowserWindow,
@@ -18,7 +20,7 @@ function createWindow() {
       pathname: path.join(__dirname, 'app', 'index.html'),
       protocol: 'file:',
       slashes: true,
-    })
+    }),
   );
 
   if (process.env.PGP_WORKS_DEBUG) {

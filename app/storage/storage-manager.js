@@ -1,3 +1,5 @@
+// This import comes through `electron-prebuilt-compile`.
+// eslint-disable-next-line import/no-extraneous-dependencies
 import Electron from 'electron';
 import fs from 'fs';
 import path from 'path';
@@ -5,12 +7,12 @@ import {Database} from 'sqlite3';
 
 const storageDirPath = path.join(
   Electron.remote.app.getPath('appData'),
-  'works.pgp.pgp-works'
+  'works.pgp.pgp-works',
 );
 
 const databasePath = path.join(
   storageDirPath,
-  'database'
+  'database',
 );
 
 let cachedConnection;
@@ -38,7 +40,7 @@ function closeConnection() {
   cachedConnection = null;
 }
 
-export function executeQuery(query) {
+export default function executeQuery(query) {
   const dbConnection = connect();
 
   dbConnection.serialize(() => {

@@ -1,7 +1,4 @@
-import {
-  executeQuery,
-  storagePath,
-} from './storage-manager';
+import executeQuery from './storage-manager';
 
 const TABLE_NAME = 'certs';
 // Map column name to its type.
@@ -11,12 +8,12 @@ const TABLE_SCHEMA = {
   armouredContents: 'TEXT',
 };
 
-export function openDatabase() {
+export default function openDatabase() {
   const schemaDefinitions = Object.keys(TABLE_SCHEMA).map(columnName =>
-    `${columnName} ${TABLE_SCHEMA[columnName]}`
+    `${columnName} ${TABLE_SCHEMA[columnName]}`,
   );
 
   executeQuery(
-    `CREATE TABLE IF NOT EXISTS ${TABLE_NAME} (${schemaDefinitions.join(', ')})`
+    `CREATE TABLE IF NOT EXISTS ${TABLE_NAME} (${schemaDefinitions.join(', ')})`,
   );
 }
