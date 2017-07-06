@@ -1,10 +1,13 @@
 import {OrderedSet} from 'immutable';
 import createUuid from 'uuid/v4';
+import debugLib from 'debug';
 import {
   connect,
   closeConnection,
   executeQuery,
 } from './storage-manager';
+
+const debug = debugLib('pgp-works:identity-store');
 
 const TABLE_NAME = 'certs';
 // Map column name to its type.
@@ -25,22 +28,21 @@ export default function openDatabase() {
 }
 
 export function getIdentities() {
-  const db = connect();
+  return new Promise((resolve) => {
+    debug('Reading identities from DB');
+    const db = connect();
 
-  let identities = new OrderedSet();
-
-  db.serialize(() => {
-    db.each(
-      `SELECT * FROM ${TABLE_NAME} ORDER BY added DESC`,
-      (_, row) => {
-        identities = identities.add(row);
-      },
-    );
+    db.serialize(() => {
+      db.all(
+        `SELECT * FROM ${TABLE_NAME} ORDER BY added DESC`,
+        (_, identities) => {
+          debug(`Found ${identities.length} identities.`);
+          closeConnection();
+          resolve(new OrderedSet(identities));
+        },
+      );
+    });
   });
-
-  closeConnection();
-
-  return identities;
 }
 
 export function addIdentity(armouredText) {

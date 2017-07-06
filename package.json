@@ -9,7 +9,7 @@
   "scripts": {
     "lint": "eslint .",
     "rebuild": "electron-rebuild",
-    "start": "DEBUG=-electron-compile:* PGP_WORKS_DEBUG=true electron ."
+    "start": "DEBUG=pgp-works:*,-electron-compile:* electron ."
   },
   "devDependencies": {
     "babel-eslint": "^7.2.3",
@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "bootstrap": "3",
+    "debug": "^2.6.8",
     "immutable": "^3.8.1",
     "key-mirror": "^1.0.1",
     "openpgp": "^2.5.4",

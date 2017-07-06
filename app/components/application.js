@@ -1,4 +1,5 @@
 import React, {PureComponent} from 'react';
+import {OrderedSet} from 'immutable';
 import keyMirror from 'key-mirror';
 import IdentityList from './identity-list/identity-list';
 import IdentityImport from './identity-import/identity-import';
@@ -18,12 +19,20 @@ export default class Application extends PureComponent {
 
     this.state = {
       appMode: AppModes.IDENTITY_LIST,
-      identities: getIdentities(),
+      identities: new OrderedSet(),
     };
+
+    this.getIdentities();
 
     this.handleAdditionRequest = this.handleAdditionRequest.bind(this);
     this.handleReturnToHome = this.handleReturnToHome.bind(this);
     this.handleIdentityAddition = this.handleIdentityAddition.bind(this);
+  }
+
+  getIdentities() {
+    getIdentities().then(
+      identities => this.setState({identities}),
+    );
   }
 
   handleReturnToHome() {
@@ -43,8 +52,9 @@ export default class Application extends PureComponent {
 
     this.setState({
       appMode: AppModes.IDENTITY_LIST,
-      identities: getIdentities(),
     });
+
+    this.getIdentities();
   }
 
   renderModeComponent() {
