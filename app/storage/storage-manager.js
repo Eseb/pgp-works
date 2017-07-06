@@ -17,7 +17,7 @@ const databasePath = path.join(
 
 let cachedConnection;
 
-function connect() {
+export function connect() {
   if (cachedConnection) {
     return cachedConnection;
   }
@@ -31,7 +31,7 @@ function connect() {
   return cachedConnection;
 }
 
-function closeConnection() {
+export function closeConnection() {
   if (!cachedConnection) {
     return;
   }
@@ -40,7 +40,7 @@ function closeConnection() {
   cachedConnection = null;
 }
 
-export default function executeQuery(query) {
+export function executeQuery(query) {
   const dbConnection = connect();
 
   dbConnection.serialize(() => {

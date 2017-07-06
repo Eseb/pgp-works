@@ -1,8 +1,11 @@
 import React, {PureComponent} from 'react';
-import {OrderedSet} from 'immutable';
 import keyMirror from 'key-mirror';
 import IdentityList from './identity-list/identity-list';
 import IdentityImport from './identity-import/identity-import';
+import {
+  addIdentity,
+  getIdentities,
+} from '../storage/identity-store';
 
 const AppModes = keyMirror({
   IDENTITY_LIST: null,
@@ -15,10 +18,12 @@ export default class Application extends PureComponent {
 
     this.state = {
       appMode: AppModes.IDENTITY_LIST,
+      identities: getIdentities(),
     };
 
     this.handleAdditionRequest = this.handleAdditionRequest.bind(this);
     this.handleReturnToHome = this.handleReturnToHome.bind(this);
+    this.handleIdentityAddition = this.handleIdentityAddition.bind(this);
   }
 
   handleReturnToHome() {
@@ -34,17 +39,25 @@ export default class Application extends PureComponent {
   }
 
   handleIdentityAddition(identity) {
-    console.log('Tried adding identity', identity);
+    addIdentity(identity);
+
+    this.setState({
+      appMode: AppModes.IDENTITY_LIST,
+      identities: getIdentities(),
+    });
   }
 
   renderModeComponent() {
-    const {appMode} = this.state;
+    const {
+      appMode,
+      identities,
+    } = this.state;
 
     switch (appMode) {
       case AppModes.IDENTITY_LIST:
         return (
           <IdentityList
-            identities={new OrderedSet()}
+            identities={identities}
             handleAdditionRequest={this.handleAdditionRequest}
           />
         );
