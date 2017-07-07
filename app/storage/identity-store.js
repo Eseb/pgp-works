@@ -15,7 +15,7 @@ const TABLE_NAME = 'certs';
 const TABLE_SCHEMA = {
   guid: 'VARCHAR(36) PRIMARY KEY',
   added: 'TEXT',
-  armouredContents: 'TEXT',
+  armouredText: 'TEXT',
 };
 
 export default function openDatabase() {
@@ -39,7 +39,9 @@ export function getIdentities() {
         (_, identities) => {
           debug(`Found ${identities.length} identities.`);
           closeConnection();
-          resolve(new OrderedSet(identities));
+          resolve(
+            new Set(identities.map(id => new Identity(id))),
+          );
         },
       );
     });
@@ -51,7 +53,7 @@ export function addIdentity(armouredText) {
 
   db.serialize(() => {
     const statement = db.prepare(
-      `INSERT INTO ${TABLE_NAME} (guid, added, armouredContents) VALUES (?, ?, ?)`,
+      `INSERT INTO ${TABLE_NAME} (guid, added, armouredText) VALUES (?, ?, ?)`,
     );
 
     statement.run(
