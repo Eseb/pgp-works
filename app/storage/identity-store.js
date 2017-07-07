@@ -1,4 +1,4 @@
-import {OrderedSet} from 'immutable';
+import {Set} from 'immutable';
 import createUuid from 'uuid/v4';
 import debugLib from 'debug';
 import {
@@ -6,6 +6,7 @@ import {
   closeConnection,
   executeQuery,
 } from './storage-manager';
+import Identity from './identity';
 
 const debug = debugLib('pgp-works:identity-store');
 

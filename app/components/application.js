@@ -1,5 +1,5 @@
 import React, {PureComponent} from 'react';
-import {OrderedSet} from 'immutable';
+import {Set} from 'immutable';
 import keyMirror from 'key-mirror';
 import IdentityList from './identity-list/identity-list';
 import IdentityImport from './identity-import/identity-import';
@@ -19,7 +19,7 @@ export default class Application extends PureComponent {
 
     this.state = {
       appMode: AppModes.IDENTITY_LIST,
-      identities: new OrderedSet(),
+      identities: new Set(),
     };
 
     this.getIdentities();
