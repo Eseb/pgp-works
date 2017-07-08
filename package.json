@@ -8,11 +8,13 @@
   "license": "MIT",
   "scripts": {
     "lint": "eslint .",
-    "start": "PGP_WORKS_DEBUG=true electron ."
+    "rebuild": "electron-rebuild",
+    "start": "DEBUG=pgp-works:*,-electron-compile:* electron ."
   },
   "devDependencies": {
     "babel-eslint": "^7.2.3",
     "electron-prebuilt-compile": "^1.6.11",
+    "electron-rebuild": "^1.5.11",
     "eslint": "^3.19.0",
     "eslint-config-airbnb": "^15.0.1",
     "eslint-plugin-import": "^2.2.0",
@@ -20,7 +22,19 @@
     "eslint-plugin-react": "^7.0.1"
   },
   "dependencies": {
+    "bootstrap": "3",
+    "debug": "^2.6.8",
+    "immutable": "^3.8.1",
+    "key-mirror": "^1.0.1",
+    "moment": "^2.18.1",
+    "openpgp": "^2.5.4",
+    "prop-types": "^15.5.10",
     "react": "^15.5.4",
-    "react-dom": "^15.5.4"
+    "react-bootstrap": "^0.31.0",
+    "react-dom": "^15.5.4",
+    "sqlite3": "^3.1.8",
+    "typeface-raleway": "^0.0.29",
+    "underscore": "^1.8.3",
+    "uuid": "^3.1.0"
   }
 }

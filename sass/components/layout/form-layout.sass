@@ -1,0 +1,52 @@
+$separation-border: 1px solid #3498db
+
+@keyframes slide-down
+  from
+    position: relative
+    top: -10px
+    opacity: 0
+  to
+    position: relative
+    top: 0
+    opacity: 1
+
+@keyframes slide-up
+  from
+    position: relative
+    bottom: -10px
+    opacity: 0
+  to
+    position: relative
+    bottom: 0
+    opacity: 1
+
+.form-layout
+  height: 100vh
+  display: flex
+  flex-direction: column
+
+  header, main, footer
+    padding: 1rem 2rem
+
+  header, footer
+    flex-grow: 0
+
+  header
+    border-bottom: $separation-border
+    animation: slide-down 200ms ease-out
+
+    h1
+      display: inline-block
+      margin: 0
+      line-height: 34px
+      font-size: 24px
+      vertical-align: middle
+      margin-left: 1rem
+
+  footer
+    border-top: $separation-border
+    animation: slide-up 200ms ease-out
+
+  main
+    flex-grow: 1
+    overflow-y: scroll

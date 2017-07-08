@@ -6,6 +6,10 @@ import {
 } from 'electron';
 import path from 'path';
 import url from 'url';
+import {
+  isInDebugMode,
+  loadDevTools,
+} from './debug-tools';
 
 function createWindow() {
   const window = new BrowserWindow({
@@ -23,7 +27,8 @@ function createWindow() {
     }),
   );
 
-  if (process.env.PGP_WORKS_DEBUG) {
+  if (isInDebugMode()) {
+    loadDevTools();
     window.maximize();
     window.webContents.openDevTools();
   }
