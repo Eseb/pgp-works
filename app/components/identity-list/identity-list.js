@@ -6,6 +6,7 @@ import {
   ButtonGroup,
   Glyphicon,
 } from 'react-bootstrap';
+import Search from './search';
 import Table from './table';
 
 export default class IdentityList extends PureComponent {
@@ -37,6 +38,8 @@ export default class IdentityList extends PureComponent {
       handleAdditionRequest,
       identities,
     } = this.props;
+
+    const {searchQuery} = this.state;
 
     return (
       <section id="identity-list">
@@ -70,9 +73,15 @@ export default class IdentityList extends PureComponent {
               </Button>
             </ButtonGroup>
           </div>
+          <Search
+            handleSearch={this.handleSearch}
+          />
         </header>
 
-        <Table identities={identities} />
+        <Table
+          identities={identities}
+          filter={searchQuery}
+        />
       </section>
     );
   }

@@ -7,11 +7,21 @@ export default class Table extends PureComponent {
   static get propTypes() {
     return {
       identities: PropTypes.instanceOf(Set).isRequired,
+      filter: PropTypes.string,
+    };
+  }
+
+  static get defaultProps() {
+    return {
+      filter: '',
     };
   }
 
   render() {
-    const {identities} = this.props;
+    const {
+      filter,
+      identities,
+    } = this.props;
 
     return (
       <table>
@@ -29,12 +39,16 @@ export default class Table extends PureComponent {
           </tr>
         </thead>
         <tbody>
-          {identities.map(id => (
-            <Row
-              key={id}
-              identity={id}
-            />
-          ))}
+          {
+            identities.filter(
+              id => id.user.includes(filter),
+            ).map(id => (
+              <Row
+                key={id}
+                identity={id}
+              />
+            ))
+          }
         </tbody>
       </table>
     );
