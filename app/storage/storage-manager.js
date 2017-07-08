@@ -39,13 +39,3 @@ export function closeConnection() {
   cachedConnection.close();
   cachedConnection = null;
 }
-
-export function executeQuery(query) {
-  const dbConnection = connect();
-
-  dbConnection.serialize(() => {
-    dbConnection.run(query);
-  });
-
-  closeConnection();
-}

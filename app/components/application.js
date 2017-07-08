@@ -48,13 +48,13 @@ export default class Application extends PureComponent {
   }
 
   handleIdentityAddition(identity) {
-    addIdentity(identity);
+    addIdentity(identity).then(() => {
+      this.setState({
+        appMode: AppModes.IDENTITY_LIST,
+      });
 
-    this.setState({
-      appMode: AppModes.IDENTITY_LIST,
+      this.getIdentities();
     });
-
-    this.getIdentities();
   }
 
   renderModeComponent() {
