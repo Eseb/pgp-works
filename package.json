@@ -1,6 +1,6 @@
 {
   "name": "pgp-works",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "PGP desktop app",
   "main": "start-app.js",
   "repository": "https://www.github.com/Eseb/pgp-works",
