@@ -13,7 +13,7 @@ const TABLE_NAME = 'certs';
 // Map column name to its type.
 const TABLE_SCHEMA = {
   guid: 'VARCHAR(36) PRIMARY KEY',
-  added: 'TEXT',
+  addedToApp: 'TEXT',
   armouredText: 'TEXT',
 };
 
